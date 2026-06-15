@@ -53,16 +53,25 @@ class Lightning {
       zoomControl: true, maxBounds: [[-85, -180], [85, 180]], maxBoundsViscosity: 1.0,
     });
     L.tileLayer(CONFIG.TILE, { attribution: CONFIG.ATTR, subdomains: 'abcd', maxZoom: 20, noWrap: true }).addTo(this.map);
+    this.fitWidth();
     this.updateTerminator(); setInterval(() => this.updateTerminator(), 60000);
 
     const c = document.createElement('canvas'); c.className = 'strike-canvas';
     this.map.getContainer().appendChild(c); this.canvas = c; this.ctx = c.getContext('2d');
     this.sizeCanvas();
-    this.map.on('resize', () => this.sizeCanvas());
+    this.map.on('resize', () => { this.sizeCanvas(); this.fitWidth(); });
 
     this.connect();
     this.loop();
     setInterval(() => this.updateStats(), 1000);
+  }
+
+  // Keep the no-wrap world filling the viewport width (no dead margins) at any screen size.
+  fitWidth() {
+    const w = this.map.getSize().x;
+    const mz = Math.ceil(Math.log2(w / 256));
+    this.map.setMinZoom(mz);
+    if (this.map.getZoom() < mz) this.map.setView(this.map.getCenter(), mz, { animate: false });
   }
 
   sizeCanvas() {

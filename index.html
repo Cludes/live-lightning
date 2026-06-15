@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Live lightning strikes around the world, in real time." />
+  <title>Live Lightning</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#06080f" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="map"></div>
+    <header id="header">
+      <span class="bolt">⚡</span>
+      <div class="title">
+        <div class="t1">Live Lightning</div>
+        <div class="t2">Real-time strikes worldwide <span id="status" class="dot" title="connecting"></span></div>
+      </div>
+      <div class="sep"></div>
+      <div class="stat"><span id="rate">0</span><label>strikes/min</label></div>
+      <div class="stat"><span id="live">0</span><label>flashing</label></div>
+      <div class="stat"><span id="total">0</span><label>this session</label></div>
+    </header>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="app.js"></script>
+</body>
+</html>

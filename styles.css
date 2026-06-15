@@ -1,0 +1,47 @@
+/* Live Lightning - dark electric theme */
+:root {
+  --bg: #06080f;
+  --panel: rgba(10, 14, 24, 0.9);
+  --border: rgba(150, 200, 255, 0.12);
+  --text: #e8eef7;
+  --dim: #7e8aa0;
+  --bolt: #ffe066;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; width: 100%; overflow: hidden; }
+body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 14px; }
+#app { position: relative; width: 100%; height: 100%; }
+#map { position: absolute; inset: 0; z-index: 1; background: #04060c; }
+
+.strike-canvas { position: absolute; top: 0; left: 0; z-index: 450; pointer-events: none; }
+
+#header {
+  position: absolute; top: 14px; left: 14px; z-index: 500;
+  display: flex; align-items: center; gap: 14px; padding: 11px 16px;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+}
+.bolt { font-size: 20px; filter: drop-shadow(0 0 6px rgba(255,224,102,0.7)); animation: flick 3s ease-in-out infinite; }
+@keyframes flick { 0%,100%{opacity:1} 47%{opacity:1} 48%{opacity:0.4} 49%{opacity:1} 92%{opacity:1} 93%{opacity:0.5} 94%{opacity:1} }
+.title .t1 { font-size: 18px; font-weight: 800; letter-spacing: -0.2px; color: #fff; line-height: 1.1; }
+.title .t2 { font-size: 12px; color: var(--dim); }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--dim); margin-left: 3px; vertical-align: middle; }
+.dot.ok { background: #3fd07a; } .dot.err { background: #ff5a5a; } .dot.loading { background: var(--bolt); animation: blink 1s step-start infinite; }
+@keyframes blink { 50% { opacity: 0.3; } }
+.sep { width: 1px; height: 32px; background: var(--border); }
+.stat { text-align: center; min-width: 58px; }
+.stat span { display: block; font-size: 19px; font-weight: 800; color: var(--bolt); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.stat label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--dim); }
+
+.leaflet-container { background: #04060c; font-family: var(--font); }
+.leaflet-control-zoom a { background: var(--panel) !important; color: var(--text) !important; border-color: var(--border) !important; }
+.leaflet-bar { border: none !important; box-shadow: none !important; }
+.leaflet-control-zoom { border: 1px solid var(--border) !important; border-radius: 8px !important; overflow: hidden; }
+.leaflet-control-attribution { background: var(--panel) !important; color: var(--dim) !important; font-size: 9px !important; }
+.leaflet-control-attribution a { color: #5a6575 !important; }
+
+@media (max-width: 620px) {
+  #header { left: 8px; right: 8px; top: 8px; gap: 10px; padding: 9px 12px; flex-wrap: wrap; }
+  .stat { min-width: 46px; }
+}
